@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2023 Robert Bosch GmbH and Microsoft Corporation
+# Copyright (c) 2022 Robert Bosch GmbH and Microsoft Corporation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Apache License, Version 2.0 which is available at
@@ -17,14 +17,13 @@
 import json
 import logging
 
-from vehicle import Vehicle  # type: ignore
-
 from sdv.util.log import (  # type: ignore
     get_opentelemetry_log_factory,
     get_opentelemetry_log_format,
 )
 from sdv.vdb.reply import DataPointReply
 from sdv.vehicle_app import VehicleApp, subscribe_topic
+from vehicle import Vehicle  # type: ignore
 
 logging.setLogRecordFactory(get_opentelemetry_log_factory())
 logging.basicConfig(format=get_opentelemetry_log_format())
