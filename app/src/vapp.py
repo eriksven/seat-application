@@ -57,8 +57,10 @@ class SeatAdjusterApp(VehicleApp):
 
     async def on_seat_position_changed(self, data: DataPointReply):
         response_topic = "seatadjuster/currentPosition"
-        logger.debug("Seat Position Changed " + str(data.get(
-            self.Vehicle.Cabin.Seat.Row1.Pos1.Position).value))
+        logger.debug(
+            "Seat Position Changed "
+            + str(data.get(self.Vehicle.Cabin.Seat.Row1.Pos1.Position).value)
+        )
         await self.publish_event(
             response_topic,
             json.dumps(
@@ -97,6 +99,5 @@ class SeatAdjusterApp(VehicleApp):
             error_msg = f"""Not allowed to move seat because vehicle speed
                 is {vehicle_speed} and not 0"""
             response_data["result"] = {"status": 1, "message": error_msg}
-        logger.debug("Publish Response to Request:\n"
-                     + str(json.dumps(response_data)))
+        logger.debug("Publish Response to Request:\n" + str(json.dumps(response_data)))
         await self.publish_event(response_topic, json.dumps(response_data))
